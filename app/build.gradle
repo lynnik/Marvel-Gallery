@@ -13,6 +13,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "PUBLIC_KEY", "\"${marvelPublicKey}\"")
+        buildConfigField("String", "PRIVATE_KEY", "\"${marvelPrivateKey}\"")
     }
     buildTypes {
         release {
@@ -33,7 +35,21 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$android_support_version"
     implementation "com.android.support.constraint:constraint-layout:$android_support_constraint_version"
 
+    // Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+
+    // RxAndroid
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+    // Retrofit
+    implementation(["com.squareup.retrofit2:retrofit:$retrofit_version",
+                    "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version",
+                    "com.squareup.retrofit2:converter-gson:$retrofit_version",
+                    "com.squareup.okhttp3:okhttp:$okhttp_version",
+                    "com.squareup.okhttp3:logging-interceptor:$okhttp_version"])
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

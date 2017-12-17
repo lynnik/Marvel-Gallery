@@ -3,6 +3,10 @@ buildscript {
     ext.android_support_version = "26.1.0"
     ext.android_support_constraint_version = "1.0.2"
     ext.glide_version = "3.8.0"
+    ext.rxjava_version = "2.1.2"
+    ext.rxandroid_version = "2.0.1"
+    ext.retrofit_version = "2.2.0"
+    ext.okhttp_version = "3.6.0"
 
     repositories {
         google()
