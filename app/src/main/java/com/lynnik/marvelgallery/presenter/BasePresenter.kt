@@ -1,7 +1,12 @@
 package com.lynnik.marvelgallery.presenter
 
-/**
- * Created by lynnik on 19.12.2017.
- */
-class BasePresenter {
+import io.reactivex.disposables.CompositeDisposable
+
+abstract class BasePresenter : Presenter {
+
+  protected var subscriptions = CompositeDisposable()
+
+  override fun onViewDestroyed() {
+    subscriptions.dispose()
+  }
 }
