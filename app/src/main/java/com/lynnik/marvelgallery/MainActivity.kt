@@ -7,6 +7,7 @@ import com.lynnik.marvelgallery.data.MarvelRepository
 import com.lynnik.marvelgallery.model.MarvelCharacter
 import com.lynnik.marvelgallery.presenter.MainPresenter
 import com.lynnik.marvelgallery.view.common.BaseActivityWithPresenter
+import com.lynnik.marvelgallery.view.common.addOnTextChangedListener
 import com.lynnik.marvelgallery.view.common.bindToSwipeRefresh
 import com.lynnik.marvelgallery.view.common.toast
 import com.lynnik.marvelgallery.view.main.CharacterItemAdapter
@@ -32,6 +33,11 @@ class MainActivity : BaseActivityWithPresenter(), MainView {
 
     recyclerView.layoutManager = GridLayoutManager(this, 2)
     swipeRefreshView.setOnRefreshListener { presenter.onRefresh() }
+    searchView.addOnTextChangedListener {
+      onTextChanged { text, _, _, _ ->
+        presenter.onSearchChanged(text)
+      }
+    }
     presenter.onViewCreated()
   }
 
