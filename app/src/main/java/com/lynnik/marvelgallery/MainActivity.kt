@@ -42,12 +42,19 @@ class MainActivity : BaseActivityWithPresenter(), MainView {
   }
 
   override fun show(items: List<MarvelCharacter>) {
-    val categoryItemAdapters = items.map(::CharacterItemAdapter)
+    val categoryItemAdapters = items.map(this::createCategoryItemAdapter)
     recyclerView.adapter = MainListAdapter(categoryItemAdapters)
   }
 
   override fun showError(error: Throwable) {
     toast("Error: ${error.message}")
     error.printStackTrace()
+  }
+
+  private fun createCategoryItemAdapter(character: MarvelCharacter) =
+      CharacterItemAdapter(character, { showHeroProfile(character) })
+
+  private fun showHeroProfile(character: MarvelCharacter) {
+    CharacterProfileActivity.start(this, character)
   }
 }

@@ -10,14 +10,17 @@ import com.lynnik.marvelgallery.view.common.ItemAdapter
 import com.lynnik.marvelgallery.view.common.bindView
 import com.lynnik.marvelgallery.view.common.loadImage
 
-class CharacterItemAdapter(val character: MarvelCharacter)
-  : ItemAdapter<CharacterItemAdapter.ViewHolder>(R.layout.item_character) {
+class CharacterItemAdapter(
+    val character: MarvelCharacter,
+    val clicked: (MarvelCharacter) -> Unit
+) : ItemAdapter<CharacterItemAdapter.ViewHolder>(R.layout.item_character) {
 
   override fun onCreateViewHolder(itemView: View) = ViewHolder(itemView)
 
   override fun ViewHolder.onBindViewHolder() {
     textView.text = character.name
     imageView.loadImage(character.imageUrl)
+    itemView.setOnClickListener { clicked(character) }
   }
 
   class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
